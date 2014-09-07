@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Selector",
+  "version": "1.0",
+
+  "description": "This extensions permits selecting on certain websites",
+
+  "author": "Eitan Adler",
+
+  "incognito": "split",
+
+  "minimum_chrome_version": "30",
+
+  "content_scripts" : [{
+    "matches" : [
+      "*://pandora.com/*",
+      "*://*.pandora.com/*",
+    ],
+    "js" : ["background.js"]
+  }],
+  "web_accessible_resources" :  [
+    "select_content.js"
+    ]
+}
