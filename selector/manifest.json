@@ -13,8 +13,9 @@
 
   "content_scripts" : [{
     "matches" : [
-      "*://pandora.com/*",
       "*://*.pandora.com/*",
+      "*://*.snopes.com/*",
+      "*://*.purple.com/*"
     ],
     "js" : ["background.js"]
   }],

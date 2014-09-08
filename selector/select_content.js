@@ -43,8 +43,32 @@ function pandora_continuous_monitor() {
     lyricsObserver.observe(trackDetail, config);
 }
 
-
-(function(){
+function website_pandora() {
     pandora_fixer();
     pandora_continuous_monitor();
+}
+
+which_fixer = {
+    "https?:\/\/(.*\.|)purple.com(/.*|)" : function() {},
+    "https?:\/\/(.*\.|)pandora.com/.*" : website_pandora
+};
+
+function dispatch(loc) {
+    console.log("Looking for match against --" + loc + "--");
+    for (var key in which_fixer) {
+        if (which_fixer.hasOwnProperty(key)) {
+            matches = loc.match(new RegExp(key));
+            if (matches != null) {
+                console.log("Found match against " + key);
+                which_fixer[key]();
+                break;
+            }
+        }
+    }
+}
+
+
+(function() {
+    loc = window.location.href;
+    dispatch(loc);
 })()
